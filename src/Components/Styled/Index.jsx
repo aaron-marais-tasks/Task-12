@@ -1,41 +1,36 @@
 import styled from 'styled-components'
 
-export const Find = {
-	Box: styled.div`
-		display: flex;
-		flex-direction: column;
-	`,
-	Inputs: styled.div`
-		display: flex;
-		width: 80vw;
-		max-height: calc(100vh - 7.5vw);
-		overflow: auto;
-		justify-content: space-between;
-		align-items: center;
-		flex-wrap: wrap;
+export const Box = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`
 
-		span {
-			padding: 1vw;
-		}
-	`,
-	Location: styled.span`
-		padding: .5vw;
-		margin: .5vw;
-		background-color: lightblue;
-		cursor: pointer;
-		border-radius: 1vw;
-	`
-}
+export const Inputs = styled.div`
+	display: flex;
+	width: 90vw;
+	max-height: calc(100vh - 4.5vw);
+	overflow: auto;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 
-export const Index = {
-	Box: styled.div`
-		display: flex;
-		flex-direction: column;
-		height: 7.5vw;
-	`,
-	Header: styled.div`
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between
-	`
-}
+	::-webkit-scrollbar {
+		width: 0px;
+		background: transparent;
+	}
+`
+
+export const Location = styled.span`
+	line-height: 1;
+	padding: .5vw;
+	margin: .5vw;
+	background-color: rgb(35,39,42);
+	color: rgb(255,255,255);
+	cursor: pointer;
+	border: 2px solid hsla(0,0%,100%,.8);
+	border-radius: 1vw;
+`

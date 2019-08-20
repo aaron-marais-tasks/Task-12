@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Offside&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -9,4 +11,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: rgb(35,39,42);
+}
+
+.tooltip {
+	background-color: rgb(114,137,218) !important;
+	font-size: 22px;
 }

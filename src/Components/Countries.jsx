@@ -1,14 +1,12 @@
 import React from "react"
 import {AppContext} from "../App.js"
+import ReactTooltip from 'react-tooltip'
 
-import { Find } from "./Styled/Index.jsx"
-
-import { debounce } from "throttle-debounce"
+import * as Index from "./Styled/Index.jsx"
 
 export default function IndexComponent() {
 	const ctx = React.useContext(AppContext)
 
-	const [inputValue, setInputValue] = React.useState("")
 	const [countries, setCountries] = React.useState([])
 
 	const [filter, setFilter] = React.useState("")
@@ -24,7 +22,7 @@ export default function IndexComponent() {
 
 		const onDocKeydown = e => {
 		    const char = String.fromCharCode(e.which)
-		    if (/[a-z ]/i.test(char)) {
+		    if (/[a-z ]/i.test(char) && e.key.length === 1) {
 		    	e.preventDefault()
 		    	setFilter(f => f + e.key)
 		    } else if(e.key === "Backspace") {
@@ -35,6 +33,8 @@ export default function IndexComponent() {
 		document.addEventListener("keydown", onDocKeydown)
 
 		return () => document.removeEventListener("keydown", onDocKeydown)
+
+		ReactTooltip.rebuild()
 	}, [])
 
 	React.useEffect(() => {
@@ -42,18 +42,32 @@ export default function IndexComponent() {
 			country.toUpperCase().indexOf(filter.toUpperCase()) > -1
 		)
 		setFiltered(filtered)
+		ctx.filter(filter)
 	}, [filter])
 
-	const toDisplay = filter ? filtered : countries
+	React.useEffect(() => {
+		ReactTooltip.rebuild()
+	}, [countries])
+
+	const toDisplay = (filter ? filtered : countries).map(
+		(country, index) => {
+			if(country === "Aruba")
+				return <Index.Location key={index} onClick={
+					ctx.submit.bind(null, "country", country)
+				} data-tip="Aruba ? More like Arriba!">{country}</Index.Location>
+
+			return <Index.Location key={index} onClick={
+				ctx.submit.bind(null, "country", country)
+			}>{country}</Index.Location>
+		}
+	)
+
 	return (
-			<Find.Box>
-				<Find.Inputs>
-					{toDisplay.map(country => 
-						<Find.Location onClick={
-							ctx.submit.bind(null, "country", country)
-						}>{country}</Find.Location>
-					)}
-				</Find.Inputs>
-			</Find.Box>
+			<Index.Box>
+      			<ReactTooltip effect="solid" className="tooltip" />
+				<Index.Inputs>
+					{toDisplay}
+				</Index.Inputs>
+			</Index.Box>
 	)
 }
