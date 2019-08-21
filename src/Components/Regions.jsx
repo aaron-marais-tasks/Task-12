@@ -7,16 +7,16 @@ import * as Index from "./Styled/Locations.jsx"
 export default function IndexComponent() {
 	const ctx = React.useContext(AppContext)
 
-	const [countries, setCountries] = React.useState([])
+	const [regions, setRegions] = React.useState([])
 
 	const [filter, setFilter] = React.useState("")
 	const [filtered, setFiltered] = React.useState([])
 
 	React.useEffect(() => {
-		fetch("https://api.aaronleem.co.za/locations/")
-			.then(countries => countries.json())
-			.then(countries => {
-				setCountries(countries)
+		fetch(`https://api.aaronleem.co.za/locations/${ctx.path.country}`)
+			.then(regions => regions.json())
+			.then(regions => {
+				setRegions(regions)
 			})
 
 		const onDocKeydown = e => {
@@ -36,7 +36,7 @@ export default function IndexComponent() {
 	}, [])
 
 	React.useEffect(() => {
-		const filtered = countries.filter(country =>
+		const filtered = regions.filter(country =>
 			country.toUpperCase().indexOf(filter.toUpperCase()) > -1
 		)
 		setFiltered(filtered)
@@ -45,18 +45,13 @@ export default function IndexComponent() {
 
 	React.useEffect(() => {
 		ReactTooltip.rebuild()
-	}, [countries])
+	}, [regions])
 
-	const toDisplay = (filter ? filtered : countries).map(
-		(country, index) => {
-			if(country === "Aruba")
-				return <Index.Location key={index} onClick={
-					ctx.submit.bind(null, "country", country)
-				} data-tip="Aruba ? More like Arriba!">{country}</Index.Location>
-
+	const toDisplay = (filter ? filtered : regions).map(
+		(region, index) => {
 			return <Index.Location key={index} onClick={
-				ctx.submit.bind(null, "country", country)
-			}>{country}</Index.Location>
+				ctx.submit.bind(null, "region", region)
+			}>{region}</Index.Location>
 		}
 	)
 

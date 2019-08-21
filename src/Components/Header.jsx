@@ -28,7 +28,7 @@ export default function HeaderComponent(props) {
 		<Header.Bar>
   			<ReactTooltip effect="solid" className="tooltip" />
 			<div className="logo">
-				<img src={Logo} />
+				<img src={Logo} alt="Logo" />
 				<span data-tip="the weather is hot" data-place="right">
 					Weather or Not
 				</span>
