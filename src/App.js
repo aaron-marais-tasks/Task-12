@@ -90,7 +90,9 @@ function App() {
       filter: txt => txt !== undefined ? updateFilter(txt) : filter
     }}>
       <HeaderComponent />
-      <Rendering />
+      <div style={{flex: 1}}>
+        <Rendering />
+      </div>
     </AppContext.Provider>
   );
 }
