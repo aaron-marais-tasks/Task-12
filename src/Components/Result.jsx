@@ -29,7 +29,7 @@ export default function ResultComponent() {
     }, [countryIsoCode])
 
     if(Object.keys(weather).length === 0) return <Loader />
-    
+
     let WeatherType = () => null
     switch(weather.weather[0].main) {
         case "Rain":
@@ -41,15 +41,104 @@ export default function ResultComponent() {
         break
 
         case "Clear":
-            WeatherType = WeatherTypes.PartlyCloudy
+            WeatherType = WeatherTypes.Clear
         break
 
         default: {}
     }
 
+    const getTimeFromStamp = timestamp => {
+        // Convert timestamp to milliseconds
+        const date = new Date(timestamp*1000)
+
+        const hours = date.getHours(),
+            minutes = "0" + date.getMinutes(),
+            seconds = "0" + date.getSeconds()
+
+        // Display date time in MM-dd-yyyy h:m:s format
+        return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
+    }
+
     return (
         <Result.Box>
             <WeatherType />
+
+            <Result.Status>
+                {weather.weather[0].main}
+            </Result.Status>
+
+            <Result.Temperature>
+                <Result.Temperature.Min>
+                    <div className="desc">
+                        Min
+                    </div>
+                    <div className="temp">
+                        {weather.main.temp_min}°C
+                    </div>
+                </Result.Temperature.Min>
+
+                <Result.Temperature.Avg>
+                    {weather.main.temp}°C
+                </Result.Temperature.Avg>
+
+                <Result.Temperature.Max>
+                    <div className="desc">
+                        Max
+                    </div>
+                    <div className="temp">
+                        {weather.main.temp_max}°C
+                    </div>
+                </Result.Temperature.Max>
+            </Result.Temperature>
+
+            <Result.Statistic>
+                <Result.Statistic.Value>
+                    <div className="desc">
+                        Pressure
+                    </div>
+                    <div className="val">
+                        {weather.main.pressure}
+                    </div>
+                </Result.Statistic.Value>
+
+                <Result.Statistic.Value>
+                    <div className="desc">
+                        Humidity
+                    </div>
+                    <div className="val">
+                        {weather.main.humidity}
+                    </div>
+                </Result.Statistic.Value>
+            </Result.Statistic>
+
+            <Result.Other>
+                <Result.Other.Item>
+                    <div className="desc">
+                        Wind
+                    </div>
+                    <div className="val">
+                        {weather.wind.speed} KM/H @ {weather.wind.deg}°
+                    </div>
+                </Result.Other.Item>
+
+                <Result.Other.Item>
+                    <div className="desc">
+                        Sunrise
+                    </div>
+                    <div className="val">
+                        {getTimeFromStamp(weather.sys.sunrise)}°
+                    </div>
+                </Result.Other.Item>
+
+                <Result.Other.Item>
+                    <div className="desc">
+                        Sunset
+                    </div>
+                    <div className="val">
+                        {getTimeFromStamp(weather.sys.sunset)}°
+                    </div>
+                </Result.Other.Item>
+            </Result.Other>
         </Result.Box>
     )
 }
