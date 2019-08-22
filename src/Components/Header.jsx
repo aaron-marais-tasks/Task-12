@@ -18,7 +18,7 @@ export default function HeaderComponent(props) {
 
 		if(ctx.path.city) {
 			crumbs.push(<FontAwesomeIcon key={3} icon="angle-right" />)
-			crumbs.push(<span key={4}>{ctx.path.city}</span>)
+			crumbs.push(<span key={4} onClick={() => ctx.toStep(1)}>{ctx.path.city}</span>)
 		}
 
 		return crumbs

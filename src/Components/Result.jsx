@@ -1,10 +1,11 @@
 import React from "react"
 import {AppContext} from "../App.js"
 
-import * as Index from "./Styled/Result.jsx"
+import Loader from "./Loader.jsx"
+import * as Result from "./Styled/Result.jsx"
 import * as WeatherTypes from "./WeatherTypes"
 
-export default function IndexComponent() {
+export default function ResultComponent() {
     const ctx = React.useContext(AppContext)
 
     const [countryIsoCode, setCountryCode] = React.useState("")
@@ -27,23 +28,28 @@ export default function IndexComponent() {
             })
     }, [countryIsoCode])
 
+    if(Object.keys(weather).length === 0) return <Loader />
+    
     let WeatherType = () => null
-    if(Object.keys(weather).length > 0) {
-        switch(weather.weather[0].main) {
-            case "Rain":
-                WeatherType = WeatherTypes.Rain
-            break
+    switch(weather.weather[0].main) {
+        case "Rain":
+            WeatherType = WeatherTypes.Rain
+        break
 
-            default: {}
-        }
+        case "Clouds":
+            WeatherType = WeatherTypes.PartlyCloudy
+        break
+
+        case "Clear":
+            WeatherType = WeatherTypes.PartlyCloudy
+        break
+
+        default: {}
     }
 
     return (
-        <React.Fragment>
+        <Result.Box>
             <WeatherType />
-            <div>
-
-            </div>
-        </React.Fragment>
+        </Result.Box>
     )
 }

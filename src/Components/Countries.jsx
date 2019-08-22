@@ -2,6 +2,7 @@ import React from "react"
 import {AppContext} from "../App.js"
 import ReactTooltip from 'react-tooltip'
 
+import Loader from "./Loader.jsx"
 import * as Index from "./Styled/Locations.jsx"
 
 export default function IndexComponent() {
@@ -60,6 +61,8 @@ export default function IndexComponent() {
 		}
 	)
 
+	if(countries.length === 0) return <Loader />
+	
 	return (
 			<Index.Box>
       			<ReactTooltip effect="solid" className="tooltip" />

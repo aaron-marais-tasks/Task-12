@@ -1,10 +1,11 @@
 import React from 'react'
 
+import HeaderComponent from "./Components/Header.jsx"
+import IndexComponent from "./Components/Index.jsx"
 import CountriesComponent from "./Components/Countries.jsx"
 import RegionsComponent from "./Components/Regions.jsx"
 import CitiesComponent from "./Components/Cities.jsx"
 import ResultComponent from "./Components/Result.jsx"
-import HeaderComponent from "./Components/Header.jsx"
 
 export const AppContext = React.createContext({})
 
@@ -62,7 +63,7 @@ function App() {
   const Rendering = (() => {
     switch(step) {
       case 0:
-        return () => <span onClick={() => setStep(1)}>Next</span>
+        return IndexComponent
 
       case 1:
         return CountriesComponent
@@ -90,9 +91,7 @@ function App() {
       filter: txt => txt !== undefined ? updateFilter(txt) : filter
     }}>
       <HeaderComponent />
-      <div style={{flex: 1}}>
-        <Rendering />
-      </div>
+      <Rendering />
     </AppContext.Provider>
   );
 }

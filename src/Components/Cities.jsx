@@ -2,6 +2,7 @@ import React from "react"
 import {AppContext} from "../App.js"
 import ReactTooltip from 'react-tooltip'
 
+import Loader from "./Loader.jsx"
 import * as Index from "./Styled/Locations.jsx"
 
 export default function IndexComponent() {
@@ -54,6 +55,8 @@ export default function IndexComponent() {
 			}>{region}</Index.Location>
 		}
 	)
+
+	if(cities.length === 0) return <Loader />
 
 	return (
 			<Index.Box>
