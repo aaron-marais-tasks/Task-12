@@ -24,6 +24,8 @@ export default function HeaderComponent(props) {
 		return crumbs
 	}
 
+	const Filtering = ctx.currentStep > 0 && ctx.currentStep < 4 && !ctx.loading
+
 	return (
 		<Header.Bar>
   			<ReactTooltip effect="solid" className="tooltip" />
@@ -34,10 +36,12 @@ export default function HeaderComponent(props) {
 				</span>
 			</div>
 
-			<Header.Filter>
-				{ctx.filter()}
-				<span>|</span>
-			</Header.Filter>
+			{Filtering ? (
+				<Header.Filter>
+					{ctx.filter()}
+					<span>|</span>
+				</Header.Filter>
+			) : null}
 
 			<Header.Breadcrumbs>
 				<span onClick={() => ctx.toStep(0)}>

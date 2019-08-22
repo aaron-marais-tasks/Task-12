@@ -37,6 +37,7 @@ export const Clear = styled.div`
     stroke-linecap: round;
     opacity: .3;
     height: 170%;
+    pointer-events: none;
 
     animation: ${osc} 2s ease-in-out infinite alternate
 

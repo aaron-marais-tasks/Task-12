@@ -19,6 +19,11 @@ export default function IndexComponent() {
 			.then(regions => {
 				setRegions(regions)
 			})
+	}, [])
+
+	React.useEffect(() => {
+		ctx.done()
+		ReactTooltip.rebuild()
 
 		const onDocKeydown = e => {
 		    const char = String.fromCharCode(e.which)
@@ -31,10 +36,8 @@ export default function IndexComponent() {
 		}
 
 		document.addEventListener("keydown", onDocKeydown)
-
-		ReactTooltip.rebuild()
 		return () => document.removeEventListener("keydown", onDocKeydown)
-	}, [])
+	}, [regions])
 
 	React.useEffect(() => {
 		const filtered = regions.filter(country =>

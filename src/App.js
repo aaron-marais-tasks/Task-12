@@ -11,6 +11,7 @@ export const AppContext = React.createContext({})
 
 function App() {
   const [step, setStep] = React.useState(0)
+  const [loading, setLoading] = React.useState(false)
   const [filter, updateFilter] = React.useState(null)
   const [country, setCountry] = React.useState(null)
   const [city, setCity] = React.useState(null)
@@ -40,6 +41,8 @@ function App() {
   }
 
   React.useEffect(() => {
+    if(step > 0 && step < 4) setLoading(true)
+      
     switch(step) {
       case 0:
         setCountry(null)
@@ -55,8 +58,6 @@ function App() {
       case 2:
         setCity(null)
       break
-
-      default: {}
     }
   }, [step])
 
@@ -84,6 +85,9 @@ function App() {
   return (
     <AppContext.Provider value={{
       submit: submitForm,
+      currentStep: step,
+      loading,
+      done: () => setLoading(false),
       nextStep: () => setStep(s => s + 1),
       prevStep: () => setStep(s => s - 1),
       toStep: stepNumber => setStep(stepNumber),
