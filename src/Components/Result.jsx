@@ -30,6 +30,25 @@ export default function ResultComponent() {
 
     if(Object.keys(weather).length === 0) return <Loader />
 
+    console.log(weather)
+    if(weather.cod === "404") return (
+        <Result.Err404>
+            <div className="title">
+                Whoops
+            </div>
+
+            <div className="info">
+                Looks like our API does not list this city.
+            </div>
+
+            <div className="sub">
+                Why don't you <span className="back" onClick={
+                    () => ctx.setStep(1)
+                }>try again</span>?
+            </div>
+        </Result.Err404>
+    )
+
     let WeatherType = () => null
     switch(weather.weather[0].main) {
         case "Rain":
@@ -126,7 +145,7 @@ export default function ResultComponent() {
                         Sunrise
                     </div>
                     <div className="val">
-                        {getTimeFromStamp(weather.sys.sunrise)}°
+                        {getTimeFromStamp(weather.sys.sunrise)}
                     </div>
                 </Result.Other.Item>
 
@@ -135,7 +154,7 @@ export default function ResultComponent() {
                         Sunset
                     </div>
                     <div className="val">
-                        {getTimeFromStamp(weather.sys.sunset)}°
+                        {getTimeFromStamp(weather.sys.sunset)}
                     </div>
                 </Result.Other.Item>
             </Result.Other>
