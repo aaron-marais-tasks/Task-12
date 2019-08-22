@@ -6,6 +6,7 @@ export const Box = styled.div`
 	flex-direction: column;
 	align-items: center;
     width: 85.5vw;
+    z-index: 1;
 `
 
 export const Inputs = styled.div`

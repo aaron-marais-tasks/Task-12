@@ -7,7 +7,6 @@ export const Bar = styled.div`
 	width: 89vw;
 	height: 4vw;
 	padding: .25vw 5.5vw;
-	z-index: 1;
 
     .logo {
         display: flex;
