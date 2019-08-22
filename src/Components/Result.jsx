@@ -21,7 +21,7 @@ export default function ResultComponent() {
 
     React.useEffect(() => {
         if(countryIsoCode === "") return
-        fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${ctx.path.city},${encodeURIComponent(countryIsoCode)}&appid=01bc30c35e610cfeddfa7e05ffc5f017`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${ctx.path.city},${encodeURIComponent(countryIsoCode)}&appid=01bc30c35e610cfeddfa7e05ffc5f017`)
             .then(weather => weather.json())
             .then(weather => {
                 setWeather(weather)
