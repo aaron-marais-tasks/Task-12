@@ -4,6 +4,7 @@ export const Home = styled.div`
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     width: 85.5vw;
     z-index: 1;
