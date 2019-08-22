@@ -18,13 +18,25 @@ export const Rain = styled.div`
     ${props => props.backRow ? RainBackrow : RainFrontrow}
 `
 
+const DropFrames = keyframes`
+    0% {
+        transform: translateY(0vh);
+    }
+    75% {
+        transform: translateY(90vh);
+    }
+    100% {
+        transform: translateY(90vh);
+    }
+`
+
 export const Drop = styled.div`
     position: absolute;
     bottom: ${props => props.five * 2 - 1 + 100}%;
     width: 15px;
     height: 120px;
     pointer-events: none;
-    animation: drop 0.5s linear infinite;
+    animation: ${DropFrames} 0.5s linear infinite;
     animation-delay: 0.${props => props.hundred}s;
     animation-duration: 0.5${props => props.hundred}s;
 
@@ -35,12 +47,45 @@ export const Drop = styled.div`
     }: ${props => props.step}%;
 `
 
+const StemFrames = keyframes`
+    0% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+`
 const Stem = css`
     width: 1px;
     height: 60%;
     margin-left: 7px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
-    animation: stem 0.5s linear infinite;
+    animation: ${StemFrames} 0.5s linear infinite;
+`
+
+const SplatFrames = keyframes`
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    90% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
 `
 
 const Splat = css`
@@ -50,7 +95,7 @@ const Splat = css`
     border-radius: 50%;
     opacity: 1;
     transform: scale(0);
-    animation: splat 0.5s linear infinite;
+    animation: ${SplatFrames} 0.5s linear infinite;
 `
 
 export const Effect = styled.div`
