@@ -35,7 +35,7 @@ export const PartlyCloudy = styled.div`
     stroke: white;
     stroke-width: 5px;
     stroke-linecap: round;
-    opacity: .5;
+    opacity: .3;
     height: 160%;
 
     animation: ${osc} 2s ease-in-out infinite alternate

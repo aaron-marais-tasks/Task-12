@@ -15,6 +15,7 @@ export const Rain = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: .5;
     ${props => props.backRow ? RainBackrow : RainFrontrow}
 `
 
