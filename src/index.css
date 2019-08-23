@@ -1,3 +1,4 @@
+/* Import our font */
 @import url('https://fonts.googleapis.com/css?family=Offside&display=swap');
 
 body {
@@ -13,6 +14,8 @@ body {
   cursor: default;
 }
 
+/* Display our root tag as a column flexbox, with everything
+  center-aligned and justified, with 100vw and 100vh */
 #root {
   display: flex;
   flex-direction: column;
@@ -23,6 +26,7 @@ body {
   width: 100vw;
 }
 
+/* Increase tooltip font size, and background color */
 .tooltip {
 	background-color: rgb(114,137,218) !important;
 	font-size: 22px;

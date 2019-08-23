@@ -1,19 +1,30 @@
-import React from "react"
+/*
+    This file holds my partly cloudy weather effect
+*/
 
+// Import React and partly cloudy styling into scope
+import React from "react"
 import {PartlyCloudy as PartlyCloudyStyling} from "../Styled/WeatherTypes/PartlyCloudy.jsx"
 
 export default function PartlyCloudy() {
+    // Graphic lines for the sun's rays
     const graphLines = () => {
+        // Array of lines
         const graphs = []
+
+        // Loop from 330 to 0 with a step of -30
         for(let r = 330; r >= 0; r -= 30)
             graphs.push(
+                // Push in a graphic which is rotated based on loop value
                 <g transform={"rotate(" + r + ")"}>
                   <use xlinkHref="#ray" x="85"></use>
                 </g>
             )
+
         return graphs
     }
 
+    // Render partly cloudy effect, with the sun and clouds in the SVG
     return (
         <PartlyCloudyStyling>
             <svg viewBox="-208 -208 500 500">

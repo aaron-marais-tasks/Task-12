@@ -1,14 +1,24 @@
+/*
+    This file holds my rain weather type
+*/
+
+// Import React and rain styling into scope
 import React from "react"
 import * as RainType from "../Styled/WeatherTypes/Rain.jsx"
 
 export default function Rain() {
+    // Current step
     let step = 0
+
+    // Amount of drops
     const drops = []
+
+    // Amount of drops behind
     const backDrops = []
 
+    // Loop until step is 100
     while (step < 100) {
         // Random numbers to use for various randomizations
-
         // Random number between 98 and 1
         const randoHundo = (Math.floor(Math.random() * 98 + 1))
         // Random number between 5 and 2

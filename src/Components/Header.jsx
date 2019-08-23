@@ -1,13 +1,24 @@
+/*
+	This file holds my header component
+*/
+
+// Import React and application context into scope
 import React from "react"
-import ReactTooltip from 'react-tooltip'
-import * as Header from "./Styled/Header.jsx"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Logo from "./Images/logo.png"
 import {AppContext} from "../App.js"
 
+// Import React tooltip and fontawesome libraries
+import ReactTooltip from 'react-tooltip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// Import header styling, and header logo
+import * as Header from "./Styled/Header.jsx"
+import Logo from "./Images/logo.png"
+
 export default function HeaderComponent(props) {
+	// Use application context
 	const ctx = React.useContext(AppContext)
 
+	// Generate breadcrumbs from pathing
 	const getCrumbs = () => {
 		const crumbs = []
 
@@ -24,10 +35,13 @@ export default function HeaderComponent(props) {
 		return crumbs
 	}
 
+	// If filtering text component should render
 	const Filtering = ctx.currentStep > 0 && ctx.currentStep < 4 && !ctx.loading
 
+	// Render header
 	return (
 		<Header.Bar>
+			{/*	load up react tooltips, as well as logo */}
   			<ReactTooltip effect="solid" className="tooltip" />
 			<div className="logo">
 				<img src={Logo} alt="Logo" />
@@ -36,6 +50,7 @@ export default function HeaderComponent(props) {
 				</span>
 			</div>
 
+			{/* If filtering, show blinked and text */}
 			{Filtering ? (
 				<Header.Filter>
 					{ctx.filter()}
@@ -43,6 +58,7 @@ export default function HeaderComponent(props) {
 				</Header.Filter>
 			) : null}
 
+			{/* Breadcrumbs */}
 			<Header.Breadcrumbs>
 				<span onClick={() => ctx.toStep(0)}>
 					<FontAwesomeIcon icon="home" />

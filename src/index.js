@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// Import fontawesome library, as well as icons we use
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
+// Add icons to use into library
 library.add(faHome, faAngleRight)
 
 ReactDOM.render(<App />, document.getElementById('root'));
