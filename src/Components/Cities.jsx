@@ -9,6 +9,8 @@ export default function IndexComponent() {
 	const ctx = React.useContext(AppContext)
 
 	const [cities, setCities] = React.useState([])
+	const [currentTimer, setTimer] = React.useState(null)
+	const [hasCities, setHasCities] = React.useState(true)
 
 	const [filter, setFilter] = React.useState("")
 	const [filtered, setFiltered] = React.useState([])
@@ -24,6 +26,13 @@ export default function IndexComponent() {
 	React.useEffect(() => {
 		ctx.done()
 		ReactTooltip.rebuild()
+
+		if(currentTimer) clearTimeout(currentTimer)
+		setTimer(setTimeout(() => {
+			if(cities.length === 0) {
+				setHasCities(false)
+			}
+		}, 1000))
 
 		const onDocKeydown = e => {
 		    const char = String.fromCharCode(e.which)
@@ -47,16 +56,30 @@ export default function IndexComponent() {
 		ctx.filter(filter)
 	}, [filter])
 
-	React.useEffect(() => {
-		ReactTooltip.rebuild()
-	}, [cities])
-
 	const toDisplay = (filter ? filtered : cities).map(
 		(region, index) => {
 			return <Index.Location key={index} onClick={
 				ctx.submit.bind(null, "city", region)
 			}>{region}</Index.Location>
 		}
+	)
+
+	if(!hasCities) return (
+        <Index.Err404>
+            <div className="title">
+                Whoops
+            </div>
+
+            <div className="info">
+                Looks like our API does not list this region's cities.
+            </div>
+
+            <div className="sub">
+                Why don't you <span className="back" onClick={
+                    () => ctx.toStep(1)
+                }>try again</span>?
+            </div>
+        </Index.Err404>
 	)
 
 	if(cities.length === 0) return <Loader />

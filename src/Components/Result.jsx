@@ -30,7 +30,6 @@ export default function ResultComponent() {
 
     if(Object.keys(weather).length === 0) return <Loader />
 
-    console.log(weather)
     if(weather.cod === "404") return (
         <Result.Err404>
             <div className="title">
@@ -43,7 +42,7 @@ export default function ResultComponent() {
 
             <div className="sub">
                 Why don't you <span className="back" onClick={
-                    () => ctx.setStep(1)
+                    () => ctx.toStep(1)
                 }>try again</span>?
             </div>
         </Result.Err404>

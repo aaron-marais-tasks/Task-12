@@ -1,5 +1,24 @@
 import styled from 'styled-components'
 
+export const Err404 = styled.div`
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 32px;
+	color: rgb(255,255,255);
+
+	.title {
+		font-size: 62px;
+	}
+
+	.back {
+		color: rgb(114,137,218);
+		cursor: pointer;
+	}
+`
+
 export const Box = styled.div`
 	flex: 1;
 	display: flex;
