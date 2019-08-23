@@ -62,6 +62,11 @@ export default function ResultComponent() {
             WeatherType = WeatherTypes.Clear
         break
 
+        case "Mist":
+        case "Haze":
+            WeatherType = WeatherTypes.Mist
+        break
+
         default: {}
     }
 
