@@ -120,7 +120,7 @@ export default function ResultComponent() {
                         Pressure
                     </div>
                     <div className="val">
-                        {weather.main.pressure}
+                        {weather.main.pressure} hPa
                     </div>
                 </Result.Statistic.Value>
 
