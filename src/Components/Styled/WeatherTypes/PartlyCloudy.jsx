@@ -28,6 +28,7 @@ export const PartlyCloudy = styled.div`
   width: 100vw;
   height: 100vh;
   transform: translateY(18vh);
+  pointer-events: none;
 
   > svg {
     flex: 1;
