@@ -1,3 +1,5 @@
+/* eslint-disable no-fallthrough */
+
 /*
 	This file holds my header component
 */
