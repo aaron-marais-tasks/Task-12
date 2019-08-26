@@ -79,6 +79,8 @@ function App() {
       case 2:
         setCity(null)
       break
+      
+      default: {}
     }
   }, [step])
 

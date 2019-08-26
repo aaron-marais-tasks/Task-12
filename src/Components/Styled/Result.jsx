@@ -3,7 +3,7 @@
 */
 
 // Import Styled object, css and keyframes helpers
-import styled, {css, keyframes} from "styled-components"
+import styled, {css} from "styled-components"
 
 // Error 404 title styling
 const Err404Title = css`

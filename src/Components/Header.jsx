@@ -61,6 +61,8 @@ export default function HeaderComponent(props) {
 						<FontAwesomeIcon icon="home" />
 					</span>
 				)
+
+      		default: {}
 		}
 
 		return crumbs.reverse()
