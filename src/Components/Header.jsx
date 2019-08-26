@@ -22,17 +22,28 @@ export default function HeaderComponent(props) {
 	const getCrumbs = () => {
 		const crumbs = []
 
-		if(ctx.path.country) {
-			crumbs.push(<FontAwesomeIcon key={1} icon="angle-right" />)
-			crumbs.push(<span key={2} onClick={() => ctx.toStep(1)}>{ctx.path.country}</span>)
+		switch(ctx.currentStep) {
+			case 4:
+				crumbs.push(<span key={4} onClick={() => ctx.toStep(3)}>City select</span>)
+				crumbs.push(<FontAwesomeIcon key={3} icon="angle-right" />)
+
+			case 3:
+				crumbs.push(<span key={2} onClick={() => ctx.toStep(2)}>Region select</span>)
+				crumbs.push(<FontAwesomeIcon key={1} icon="angle-right" />)
+			
+			case 2:
+				crumbs.push(<span key={4} onClick={() => ctx.toStep(1)}>Country select</span>)
+				crumbs.push(<FontAwesomeIcon key={3} icon="angle-right" />)
+
+			case 1:
+				crumbs.push(
+					<span onClick={() => ctx.toStep(0)}>
+						<FontAwesomeIcon icon="home" />
+					</span>
+				)
 		}
 
-		if(ctx.path.city) {
-			crumbs.push(<FontAwesomeIcon key={3} icon="angle-right" />)
-			crumbs.push(<span key={4} onClick={() => ctx.toStep(1)}>{ctx.path.city}</span>)
-		}
-
-		return crumbs
+		return crumbs.reverse()
 	}
 
 	// If filtering text component should render
@@ -60,9 +71,6 @@ export default function HeaderComponent(props) {
 
 			{/* Breadcrumbs */}
 			<Header.Breadcrumbs>
-				<span onClick={() => ctx.toStep(0)}>
-					<FontAwesomeIcon icon="home" />
-				</span>
 				{getCrumbs()}
 			</Header.Breadcrumbs>
 		</Header.Bar>

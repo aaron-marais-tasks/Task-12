@@ -72,20 +72,20 @@ export default function ResultComponent() {
     let WeatherType
     switch(weather.weather[0].main) {
         case "Rain":
-            WeatherType = <WeatherTypes.Rain />
+            WeatherType = WeatherTypes.Rain
         break
 
         case "Clouds":
-            WeatherType = <WeatherTypes.PartlyCloudy />
+            WeatherType = WeatherTypes.PartlyCloudy
         break
 
         case "Clear":
-            WeatherType = <WeatherTypes.Clear />
+            WeatherType = WeatherTypes.Clear
         break
 
         case "Mist":
         case "Haze":
-            WeatherType = <WeatherTypes.Mist />
+            WeatherType = WeatherTypes.Mist
         break
 
         default: {}
@@ -107,8 +107,10 @@ export default function ResultComponent() {
     // Render weather component
     return (
         <Result.Box>
-            {/* Load our weather type */}
-            {WeatherType}
+            {/* Load our weather type using lazy components */}
+            <React.Suspense fallback={() => null}>
+                <WeatherType />
+            </React.Suspense>
 
             {/* Our weather status (clear, rainy, ...) */}
             <Result.Status>
